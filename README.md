@@ -17,5 +17,7 @@ Saves a `log.txt` in the same folder as the script, with the title and url of ev
 
 # How to  use
 Get an api key from `https://api.nasa.gov/`
+
 On line 4, replace `DEMO_KEY` with your freshly acquired api key (don't forget to save).
+
 Run from anywhere (IDE, console, double click...) and enjoy.
