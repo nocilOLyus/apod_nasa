@@ -22,7 +22,7 @@ while True:
 
 title = apod_json[0]["title"]
 for char in title:
-    if char in '<>:"/\|?* ':
+    if char in '<>:"/\|?*\r\n\t ':
         filename += "_"
     elif char not in ",.":
         filename += char
