@@ -11,7 +11,7 @@ If a video is returned, it gets the thumbnail.
 
 If an image has already been downloaded (title present in log file), it requests another image.
 
-Saves every image in `images\`
+Saves every image in `images\` (create it in the same folder as the script).
 
 Saves a `log.txt` in the same folder as the script, with the title and url of every downloaded image.
 
