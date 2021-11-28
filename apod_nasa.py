@@ -24,7 +24,7 @@ title = apod_json[0]["title"]
 for char in title:
     if char in '<>:"/\|?* ':
         filename += "_"
-    elif char != ",.":
+    elif char not in ",.":
         filename += char
 filename += ".jpg"
 print(f"{apod_json}\n{filename}")
