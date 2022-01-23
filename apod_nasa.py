@@ -1,9 +1,9 @@
 import subprocess
 import requests
 
-base_url = "https://api.nasa.gov/planetary/apod?api_key=oEpQtTqi2KGjIzRvGo7RZORRHY3KElS3nixagcZw"
-parameters = "&count=1&thumbs=true"             # because of the count=1, we get a single dictionary in a list, but it's necessary to get a random image everytime.
-
+base_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"       # Replace DEMO_KEY by your api key.
+parameters = "&count=1&thumbs=true"                                     # because of the count=1, we get a single dictionary in a list,
+                                                                        # but it's necessary to get a random image everytime.
 restart = 'y'
 while restart[0] == 'y':
     media = filename = image_url = ""
@@ -16,7 +16,6 @@ while restart[0] == 'y':
         if "hdurl" in apod_json[0]: key = "hdurl"
         else: key = "url"
         image_url = apod_json[0][key]
-
         with open("log.txt", "r") as l:
             if image_url in l:
                 continue
@@ -40,7 +39,7 @@ while restart[0] == 'y':
 
     image = requests.get(image_url)
     image_size = int(image.headers["Content-Length"])
-    print(f"|\tSize: {round(image_size / 1024, 2)} kB\t{round(image_size / 1_048_576, 2)} MB\n-------")
+    print(f"|\tSize: {round(image_size / 1000, 2)} kB\t{round(image_size / 1_000_000, 2)} MB\n-------")
     with open(f"images\\{filename}", "wb") as f:
         f.write(image.content)
 
@@ -48,5 +47,5 @@ while restart[0] == 'y':
 
     restart = input(f"\n\nDownload another image ? (Y/n): ").lower()
     if len(restart) == 0: restart = 'y'
-
+    
     print()
