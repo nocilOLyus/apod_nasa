@@ -1,9 +1,11 @@
 import subprocess
+import platform
 import requests
 
-base_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"       # Replace DEMO_KEY by your api key.
-parameters = "&count=1&thumbs=true"                                     # because of the count=1, we get a single dictionary in a list,
-                                                                        # but it's necessary to get a random image everytime.
+system = platform.system()
+base_url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY"
+parameters = "&count=1&thumbs=true"                                     
+                                                                       
 restart = 'y'
 while restart[0] == 'y':
     media = filename = image_url = ""
@@ -40,12 +42,22 @@ while restart[0] == 'y':
     image = requests.get(image_url)
     image_size = int(image.headers["Content-Length"])
     print(f"|\tSize: {round(image_size / 1000, 2)} kB\t{round(image_size / 1_000_000, 2)} MB\n-------")
-    with open(f"images\\{filename}", "wb") as f:
-        f.write(image.content)
+    if system == "Windows":
+        with open(f"images\\{filename}", "wb") as f:
+            f.write(image.content)
+    elif system == "Linux":
+        with open(f"images/{filename}", "wb") as f:
+            f.write(image.content)
 
-    subprocess.Popen(f"explorer images\\{filename}")
+    if system == "Windows":
+    	subprocess.Popen(f"explorer images\\{filename}")
+    elif system == "Linux":
+    	try:
+    		subprocess.Popen(["imv", f"images/{filename}"])
+    	except FileNotFoundError:
+    		subprocess.Popen(["feh", f"images/{filename}"])
 
     restart = input(f"\n\nDownload another image ? (Y/n): ").lower()
-    if len(restart) == 0: restart = 'y'
+    if len(restart) == 0 or restart == "\n": restart = 'y'
     
     print()
