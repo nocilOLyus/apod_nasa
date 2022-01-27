@@ -2,6 +2,7 @@
 Python script to get (random) images from the Astronomy Picture Of the Day NASA api.
 
 Windows: uses the default image viewer to open images.
+
 Linux: uses imv by default for image viewing. If imv isn't found, uses feh.
 Gifs should work too.
 
