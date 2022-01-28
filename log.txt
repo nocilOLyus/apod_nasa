@@ -58,3 +58,5 @@ GLIMPSE the Milky Way
 	https://apod.nasa.gov/apod/image/0512/galPlane_spitzer_f25.jpg
 The Wizard Nebula
 	https://apod.nasa.gov/apod/image/2009/AndrewKlinger_wizard_sho_res25_sig.jpg
+Descent to a Comet
+	https://apod.nasa.gov/apod/image/1411/ROLIS_descent_image.png
