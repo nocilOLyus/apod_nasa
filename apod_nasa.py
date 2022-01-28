@@ -46,14 +46,14 @@ while restart[0] == 'y':
     if system == "Windows":
         with open(f"images\\{filename}", "wb") as f:
             f.write(image.content)
-    	  subprocess.Popen(f"explorer images\\{filename}")
+    	subprocess.Popen(f"explorer images\\{filename}")
     elif system == "Linux":
         with open(f"images/{filename}", "wb") as f:
             f.write(image.content)
-    	  try:
-    		  subprocess.Popen(["imv", f"images/{filename}"])
-    	  except FileNotFoundError:
-    		  subprocess.Popen(["feh", f"images/{filename}"])
+    	try:
+    		subprocess.Popen(["imv", f"images/{filename}"])
+    	except FileNotFoundError:
+    		subprocess.Popen(["feh", f"images/{filename}"])
 
     restart = input(f"\n\nDownload another image ? (Y/n): ").lower()
     if len(restart) == 0 or restart == "\n": restart = 'y'
