@@ -42,20 +42,18 @@ while restart[0] == 'y':
     image = requests.get(image_url)
     image_size = int(image.headers["Content-Length"])
     print(f"|\tSize: {round(image_size / 1000, 2)} kB\t{round(image_size / 1_000_000, 2)} MB\n-------")
+    
     if system == "Windows":
         with open(f"images\\{filename}", "wb") as f:
             f.write(image.content)
+    	  subprocess.Popen(f"explorer images\\{filename}")
     elif system == "Linux":
         with open(f"images/{filename}", "wb") as f:
             f.write(image.content)
-
-    if system == "Windows":
-    	subprocess.Popen(f"explorer images\\{filename}")
-    elif system == "Linux":
-    	try:
-    		subprocess.Popen(["imv", f"images/{filename}"])
-    	except FileNotFoundError:
-    		subprocess.Popen(["feh", f"images/{filename}"])
+    	  try:
+    		  subprocess.Popen(["imv", f"images/{filename}"])
+    	  except FileNotFoundError:
+    		  subprocess.Popen(["feh", f"images/{filename}"])
 
     restart = input(f"\n\nDownload another image ? (Y/n): ").lower()
     if len(restart) == 0 or restart == "\n": restart = 'y'
